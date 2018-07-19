@@ -5,15 +5,11 @@ import App from './App'
 import router from './router'
 import '@/assets/stylus/index.styl'
 import ElementUI from 'element-ui'
-import http from '@/utils/http'
+import 'element-ui/lib/theme-chalk/index.css'
 import $api from '@/utils/api'
 Vue.config.productionTip = false
-http({
-  method: 'post',
-  data: {"type":1,"cityID":"2"},
-  url: 'api/v1/banner/list',
-}).then(function(res) {
-  console.log(res)
+$api.user.getCity().then((res)=>{
+  console.log(res);
 })
 Vue.prototype.$api = $api
 Vue.use(ElementUI)
