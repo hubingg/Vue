@@ -5,7 +5,8 @@ files.keys().forEach((key) => {
   if (key === './index.js') {
     return
   }
-  modules[key.replace(/(^\.\/|\.js$)/g, '')] = files(key).default
+  let constructor = files(key).default
+  modules[key.replace(/(^\.\/|\.js$)/g, '')] = new constructor()
 })
 
 export default modules

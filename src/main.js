@@ -5,7 +5,8 @@ import App from './App'
 import router from './router'
 import '@/assets/stylus/index.styl'
 import ElementUI from 'element-ui'
-import http from '@/utils/http.js'
+import http from '@/utils/http'
+import $api from '@/utils/api'
 Vue.config.productionTip = false
 http({
   method: 'post',
@@ -14,6 +15,7 @@ http({
 }).then(function(res) {
   console.log(res)
 })
+Vue.prototype.$api = $api
 Vue.use(ElementUI)
 /* eslint-disable no-new */
 new Vue({
