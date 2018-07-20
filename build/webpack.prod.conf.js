@@ -15,6 +15,8 @@ const env = process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
   : require('../config/prod.env')
 
+// 用户环境信息
+const switchApi = process.env.NODE_API || 'dev'
 const webpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({
@@ -32,7 +34,11 @@ const webpackConfig = merge(baseWebpackConfig, {
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({
-      'process.env': env
+      'process.env': env,
+      // config baseUrl
+      'JSSEAPI': config.dev.apiJsseUrl[switchApi],
+      'V1API': config.dev.apiV1Url[switchApi],
+      'IMAGEAPI': config.dev.apiImgeUrl[switchApi],
     }),
     new UglifyJsPlugin({
       uglifyOptions: {

@@ -3,12 +3,12 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import '@/assets/stylus/index.styl'
 import ElementUI from 'element-ui'
+import $api from '@/api'
 import 'element-ui/lib/theme-chalk/index.css'
-import $api from '@/utils/api'
+import '@/assets/stylus/index.styl'
 Vue.config.productionTip = false
-$api.user.getCity().then((res)=>{
+$api.user.getBanner({"type":17,"cityID":"2"}).then((res)=>{
   console.log(res);
 })
 Vue.prototype.$api = $api

@@ -1,24 +1,25 @@
 import axios from 'axios'
-import { MessageBox } from 'element-ui'
+import { Loading, MessageBox } from 'element-ui'
 import helper from './helper'
 
-let axiosIns = axios.create({
-  timeout: 30000,
-  headers: {'Content-Type': 'application/json;charset=UTF-8'}
+// create an axios instance
+const service = axios.create({
+  timeout: 5000 // request timeout
 })
 
-// 请求拦截
-axiosIns.interceptors.request.use(function (config) {
-  // 配置config
+// request interceptor
+service.interceptors.request.use((config) => {
+  // config
   config.headers.Accept = 'application/json'
   config.headers.ticket = helper.getQueryString('ticket')
   config.headers.domain = helper.getQueryString('domain')
   return config
 })
-// 响应拦截
-// axiosIns.interceptors.response.use(function (response) {
+// respone interceptor
+// service.interceptors.response.use((response) => {
 //   let data = response.data
 //   let status = response.status
+//   loadinginstace.close()
 //   if (status === 200) {
 //     return Promise.resolve(response)
 //   } else {
@@ -26,48 +27,53 @@ axiosIns.interceptors.request.use(function (config) {
 //   }
 // })
 
-function requestHandle (params) {
+function requestHandle (params, isLoading = true) {
+  let loadinginstace
+  if (isLoading) {
+    loadinginstace = Loading.service({ fullscreen: true })
+  }
   return new Promise((resolve, reject) => {
-    axiosIns(params).then(res=> {
+    service(params).then(res => {
+      if (isLoading) {
+        loadinginstace.close()
+      }
       if (res.data.errorCode === -1000) {
-        MessageBox.alert('会话超时，请重新登录', '提示', {callback:function(){
-          eschandler()
-        }})
+        MessageBox.alert('会话超时，请重新登录', '提示', {callback: eschandler})
         return
       }
       resolve(res.data)
     }).catch(function (err) {
+      if (isLoading) loadinginstace.close()
       reject(err)
     })
   })
 }
-function eschandler(){
-  let logout = function(){
-    window.location.href="/admin/portal/login.jsp";
-  };
-  axiosIns({
-    url:'/admin/logout.ajax',
-  }).then((res)=>{
-    if(res.success) {
-      logout();
-    }else {
-      logout();
+function eschandler () {
+  let logout = () => {
+    window.location.href = '/admin/portal/login.jsp'
+  }
+  service({
+    url: '/admin/logout.ajax'
+  }).then((res) => {
+    if (res.success) {
+      logout()
+    } else {
+      logout()
     }
   })
 }
 export default {
-  post (url, params, op) {
+  post (url, params, isLoading) {
     return requestHandle({
       method: 'post',
       url: url,
       data: params
-    })
+    }, isLoading)
   },
-  get (url, params, op) {
+  get (url, params, isLoading) {
     return requestHandle({
       method: 'get',
       url: helper.queryString(url, params)
-    })
+    }, isLoading)
   }
 }
-

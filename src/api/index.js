@@ -2,7 +2,7 @@ const files = require.context('.', true, /\.js/)
 const modules = {}
 
 files.keys().forEach((key) => {
-  if (key === './index.js') {
+  if (key === './index.js' || key === './base.js') {
     return
   }
   let constructor = files(key).default
