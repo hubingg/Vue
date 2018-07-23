@@ -17,41 +17,6 @@ if(switchApi == 'test') {
 }
 module.exports = {
   dev: {
-    // config baseUrl
-    // 后台未重构的老接口
-    apiJsseUrl: {
-      dev: "'http://localhost:11021/jsse/'",
-      test: "'http://a8-domain.pagoda.com.cn:11021/jsse/'",
-      uat: "'http://a8-domain.pagoda.com.cn:14021/jsse/'",
-      production: "'http://119.29.140.47:14501/jsse/'"
-    },
-    // 后台重构的新接口
-    apiV1Url: {
-      dev: "'http://localhost:11021/api/v1/'",
-      test: "'https://a8-domain.pagoda.com.cn:11048/api/v1/'",
-      uat: "'https://a8-domain.pagoda.com.cn:14062/api/v1/'",
-      production: "'http://139.199.185.97/api/v1/'"
-    },
-    // 图片接口
-    apiImgeUrl: {
-      dev: "'http://localhost:11021/miResourceMgr/'",
-      test: "'http://a8-domain.pagoda.com.cn:11021/miResourceMgr/'",
-      uat: "'http://a8-domain.pagoda.com.cn:14021/miResourceMgr/'",
-      production: "'http://119.29.140.47:14501/miResourceMgr/'"
-    },
-    // 
-    apiResourceUrl: {
-      dev: '',
-      test: '',
-      uat: '',
-      production: ''
-    },
-    apiMapUrl: {
-      dev: '',
-      test: '',
-      uat: '',
-      production: ''
-    },
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
@@ -89,28 +54,6 @@ module.exports = {
   },
 
   build: {
-    // config baseUrl
-    // 后台未重构的老接口
-    apiJsseUrl: {
-      dev: '',
-      test: 'http://a8-domain.pagoda.com.cn:11021/jsse/',
-      uat: 'http://a8-domain.pagoda.com.cn:14021/jsse/',
-      production: 'http://119.29.140.47:14501/jsse/'
-    },
-    // 后台重构的新接口
-    apiV1Url: {
-      dev: '',
-      test: 'https://a8-domain.pagoda.com.cn:11048/api/v1/',
-      uat: 'https://a8-domain.pagoda.com.cn:14062/api/v1/',
-      production: 'http://139.199.185.97/api/v1/'
-    },
-    // 图片接口
-    apiImgeUrl: {
-      dev: '',
-      test: 'http://a8-domain.pagoda.com.cn:11021/miResourceMgr/',
-      uat: 'http://a8-domain.pagoda.com.cn:14021/miResourceMgr/',
-      production: 'http://119.29.140.47:14501/miResourceMgr/'
-    },
     // Template for index.html
     index: path.resolve(__dirname, `../${distName}/index.html`),
 
