@@ -6,13 +6,19 @@ import helper from './helper'
 const service = axios.create({
   timeout: 5000 // request timeout
 })
-
+// token
+const ticket = helper.getQueryString('ticket')
+const domain = helper.getQueryString('domain')
 // request interceptor
 service.interceptors.request.use((config) => {
   // config
   config.headers.Accept = 'application/json'
-  config.headers.ticket = helper.getQueryString('ticket')
-  config.headers.domain = helper.getQueryString('domain')
+  config.headers.ticket = ticket
+  config.headers.domain = domain
+  if(config.url.indexOf('jsse') > 0) {
+    config.data || (config.data = {})
+    Object.assign(config.data, {ticket, domain})
+  }
   return config
 })
 // respone interceptor
