@@ -19,7 +19,8 @@
     "build:test": "rimraf test_dist && cross-env NODE_API=test node build/build.js",
     "build:uat": "rimraf uat_dist && cross-env NODE_API=uat node build/build.js",
     "build:production": "rimraf production_dist && cross-env NODE_API=production node build/build.js",
-    "build:remove": "rimraf production_dist test_dist uat_dist dev_dist"
+    "build:remove": "rimraf production_dist test_dist uat_dist dev_dist",
+    "analyz": "cross-env NODE_API=production npm_config_report=true npm run build"
   },
   "dependencies": {
     "axios": "^0.18.0",
