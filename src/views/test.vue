@@ -3,16 +3,16 @@
     <span v-on:click="clickMe()">
       this is {{name}}!
     </span>
-    <select-city></select-city>
+    <city-picker></city-picker>
   </div>
 </template>
 
 <script>
-import SelectCity from '@/components/select-city'
+import CityPicker from '@/components/city-picker'
 export default {
   name: 'test',
   components: {
-    SelectCity
+    CityPicker
   },
   data() {
     return {
