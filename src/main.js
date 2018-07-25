@@ -8,9 +8,7 @@ import $api from '@/api'
 import 'element-ui/lib/theme-chalk/index.css'
 import '@/assets/stylus/index.styl'
 Vue.config.productionTip = false
-$api.user.getBanner({"type":17,"cityID":"2"}).then((res)=>{
-  console.log(res);
-})
+
 Vue.prototype.$api = $api
 Vue.use(ElementUI)
 /* eslint-disable no-new */

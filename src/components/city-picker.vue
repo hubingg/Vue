@@ -34,40 +34,40 @@ export default {
         name: '城市',
         id: 0
       },
-      cityLists: [],
+      cityLists: []
     }
   },
   methods: {
-    getDefaulCity(){
+    getDefaulCity () {
       this.$api.common.getDefaulCity().then((res) => {
         this.city = res.data
       })
     },
-    getCityData(){
+    getCityData () {
       this.$api.common.getCity().then((res) => {
         this.cityLists = res.data
       })
     },
-    showDrop() {
+    showDrop () {
       this.isShowDrop = !this.isShowDrop
-    }, 
-    showCity(id, name){
-      this.isShowDrop  = false
+    },
+    showCity (id, name) {
+      this.isShowDrop = false
       this.city = {
         name: name,
         id: id
       }
     },
-    warpClick() {
+    warpClick () {
       this.isShowDrop = false
     }
   },
-  created() {
-    if(this.isDefault) {
+  created () {
+    if (this.isDefault) {
       this.getDefaulCity()
     }
     this.getCityData()
-  },
+  }
 }
 </script>
 

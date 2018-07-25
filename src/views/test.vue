@@ -1,9 +1,5 @@
 <template>
   <div class="app-container">
-    <span v-on:click="clickMe()">
-      this is {{name}}!
-    </span>
-    <city-picker></city-picker>
   </div>
 </template>
 
@@ -14,11 +10,10 @@ export default {
   components: {
     CityPicker
   },
-  data() {
+  data () {
     return {
-      name: 'directly',
+      name: 'directly'
     }
-  },
+  }
 }
 </script>
-

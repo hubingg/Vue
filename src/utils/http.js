@@ -15,7 +15,7 @@ service.interceptors.request.use((config) => {
   config.headers.Accept = 'application/json'
   config.headers.ticket = ticket
   config.headers.domain = domain
-  if(config.url.indexOf('jsse') > 0) {
+  if (config.url.indexOf('jsse') > 0) {
     config.data || (config.data = {})
     Object.assign(config.data, {ticket, domain})
   }
